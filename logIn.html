@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]> <html class="lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]> <html class="lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>프로듀스SM</title>
+    <link rel="stylesheet" href="../CSS/main.css">
+    <meta name="Generator" content="EditPlus">
+    <meta name="Author" content="">
+    <meta name="Keywords" content="">
+    <meta name="Description" content="">
+
+    <!-- 팝업창 호출 -->
+    <script language = "javascript">
+      function showPopup() {
+        //팝업창 가운데 호출 함수가 제대로 안됨 일단은 눈대중으로 가운데 맞춰놨음
+        // var windowWidth = 700; //가로
+        // var windowHeight = 600; //세로
+        // var left = Math.ceil((window.screen.width - windowWidth)/2);
+        // var top = Math.ceil((window.screen.height - windowHeight)/2);
+        // window.open("signUp.html", "a", "width="+windowWidth+, "height="+windowHeight+, "left="+left+, "top="+top+);}
+        window.open("signUp.html", "a", "width=700, height=600, left=430, top=50");}
+    </script>
+
+  </head>
+  <body>
+  <nav id="topMenu" >
+    <ul>
+      <li><a class="menuLink" href="index.html">프로듀스SM</a></li>
+      <li><a class="menuLink" href="evaluation.html">강의평가</a></li>
+      <li><a class="menuLink" href="trade.html">강의교환</a></li>
+      <li><a class="menuLink" href="freeboard.html">자유게시판</a></li>
+      <li><a class="menuLink" href="logIn.html">로그인</a></li>
+    </ul>
+  </nav>
+  <br>
+  <br>
+  <section class="container">
+    <div class="login">
+      <form method="post" action="index_logIn.html">
+        <p><input type="text" name="login" value="" placeholder="아이디"></p>
+        <p><input type="password" name="password" value="" placeholder="비밀번호"></p>
+        <p class="submit"><input type="submit" name="commit" value="로그인"></p>
+      </form>
+    </div>
+    <!-- <a href="signUp.html">회원가입</a> -->
+    <input type = "button" value = "회원가입" onclick="showPopup();" />
+    <div class="login-help">
+      <p>비밀번호를 잊어버리셨나요? <a href="index.html">여기를 눌러주세요</a></p>
+    </div>
+  </section>
+  </body>
+</html>

@@ -1,0 +1,29 @@
+body{margin:0;text-align:center;}
+<style>
+#topMenu {
+  height: 30px;
+  width: 800px;
+}
+#topMenu ul li {
+  list-style: none;
+  color: #DBE3E3;
+  background-color: #1A3855;
+  float: left;
+  line-height: 30px;
+  vertical-align: middle;
+  text-align: center;
+}
+#topMenu .menuLink {
+  text-decoration: none;
+  color: #DBE3E3;
+  display: block;
+  width: 180px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: "나눔스퀘어라운드OTF", Dotum, Arial;
+}
+#topMenu .menuLink:hover {
+  color: #FFFFCC;
+  background-color: #3F97AF;
+}
+</style>
