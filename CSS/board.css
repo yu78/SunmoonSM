@@ -13,6 +13,9 @@ ul li {list-style:none; }
 .list-table tbody td{ text-align:center; padding:10px 0; border-bottom:1px solid #CCC; height:20px; font: 14px 'malgun gothic','Sans-Serif','arial';}
 #write_btn {position: absolute; margin-top:20px; right: 0;}
 .re_ct {font-weight:bold; color:blue;}
+.fo_re {font-weight: bold; color:red;}
+#page_num {position: absolute; left: 260px; margin-top:20px; font-size: 14px; }
+#page_num ul li {float: left; margin-left: 10px; }
 
 /* 게시판 글쓰기 */
 #board_write {width:900px; position:relative; margin:0 auto; }

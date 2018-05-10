@@ -1,0 +1,13 @@
+/* main */
+@charset "utf-8";
+
+* {margin: 0 auto; padding:0; }
+a {text-decoration: none; color: #333; }
+ul li {list-style: none; }
+
+#login_box {width:500px; height:200px; border:solid 1px gray; }
+#main_t {margin-left:10px; color:gray;}
+#log_ta {margin-top:20px; }
+.mem a:hover {color:red; }
+#btn {width:95px; height:55px; background: skyblue; border:solid 1px skyblue; }
+.inph {height:25px; }
