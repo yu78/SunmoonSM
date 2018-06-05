@@ -44,6 +44,19 @@
 			width: auto;
 		}
 	}
+	/* footer */
+	/* #footer {
+   position:fixed;
+   left:0px;
+   bottom:0px;
+   height:60px;
+   width:100%;
+   background:#EE7785;
+   color: white;
+	} */
+	/* #footer p {
+   text-align: center;
+	} */
 		</style>
 
 		<!-- 자바 스크립트 -->
@@ -81,20 +94,25 @@
 			      <li class="nav-item">
 			        <a class="nav-link" href="../page/list.php">자유게시판</a>
 			      </li>
-						<?php if(isset($_SESSION['userid'])){	?>
+						<?php if(!(isset($_SESSION['userid']))){	?>
 							<li class="nav-item">
-				        <a class="nav-link" href="../page/mypage.php">마이페이지</a>
+				        <a class="nav-link" onclick="popupLogin();">로그인</a>
 				      </li>
 							<li class="nav-item">
-				        <a class="nav-link" href="../member/logout.php">로그아웃</a>
+				        <a class="nav-link" onclick="popupRegister();">회원가입</a>
 				      </li>
-						<?php } else { ?>
-			      <li class="nav-item">
-			        <a class="nav-link" onclick="popupLogin();">로그인</a>
-			      </li>
-						<li class="nav-item">
-			        <a class="nav-link" onclick="popupRegister();">회원가입</a>
-			      </li>
+					 <?php } else { ?>
+						 <?php if($_SESSION['level']==5) { ?>
+ 							<li class="nav-item">
+ 								<a class="nav-link" href="../admin/adminlist.php">관리자</a>
+ 							</li>
+ 						<?php }?>
+						 <li class="nav-item">
+							 <a class="nav-link" href="../page/mypage.php">마이페이지</a>
+						 </li>
+						 <li class="nav-item">
+							 <a class="nav-link" href="../member/logout.php">로그아웃</a>
+						 </li>
 						<?php } ?>
 			    </ul>
 				</div>
@@ -141,20 +159,12 @@
 				<a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
 				<a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
 			</div>
-
-			<br><br><div class="container">
-				<p class="text-right">최신강의평가<br>
-				<?php
-					$result = mq("SELECT * FROM evaluation order by idx desc limit 3");
-					while($evaluation = mysqli_fetch_array($result)){
-				?>
-				<?php echo $evaluation['lectureName']?><small>(<?php echo $evaluation['professorName']; ?>)</small> 총점 : <span style="color: red;"><?php echo $evaluation['totalScore']; ?></span><br>
-				<?php } ?>
-				</p>
-			</div>
 			<!-- footer -->
-			<div class="container" style="padding-top:100px;">
+			<div style="position:fixed; left:0px; bottom:0px; height:30px; width:100%; background:rgb(120, 194, 173);(120, 194, 173); color: white;">
+	      <p style="text-align:center; top:10px;">Copyright ⓒ 프로듀스SM. All rights reserved.</p>
+	    </div>
+			<!-- <div class="container" style="padding-top:100px;">
 				<p class="text-center">Copyright ⓒ 프로듀스SM. All rights reserved.</p>
-			</div>
+			</div> -->
 		</body>
 	</html>
