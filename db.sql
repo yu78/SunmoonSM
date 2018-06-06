@@ -63,18 +63,17 @@ CREATE TABLE `member` (
   `student_idx` int(10) NOT NULL,
   `college_name` varchar(45) NOT NULL,
   `major_name` varchar(45) NOT NULL,
-  `m_level` tinyint(1) NOT NULL default '0',
-  `m_date` datetime NOT NULL default CURRENT_TIMESTAMP,
-  `m_updated_date` datetime NOT NULL default CURRENT_TIMESTAMP
+  `state` varchar(1) NOT NULL DEFAULT '0',
+  `hashkey` varchar(100) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`idx`, `id`, `pw`, `name`, `email`, `student_idx`, `college_name`, `major_name`, `m_date`, `m_level`) VALUES
-(1, 'admin', '$2y$10$DTx4VUTjqKQgMBPLotpUKex9VhXSdK0O70BeFMqighRfih2w52IjW', '관리자', 'admin@sunmoon.ac.kr', 1234567899,'관리자', '관리자', '2018-05-04', 5),
-(2, '1234', '$2y$10$XWOIe/NMV3/9JyXFLSXhvupq4FWTKyxzlG7yDJh.yeXVqHyh5dfZi', '1234', '1234@sunmoon.ac.kr', 1234567898, '공과대학', '컴퓨터공학부', '2018-05-14', 0);
+INSERT INTO `member` (`idx`, `id`, `pw`, `name`, `email`, `student_idx`, `college_name`, `major_name`) VALUES
+(1, 'admin', '$2y$10$DTx4VUTjqKQgMBPLotpUKex9VhXSdK0O70BeFMqighRfih2w52IjW', '관리자', 'admin@sunmoon.ac.kr', 1234567899,'관리자', '관리자'),
+(2, '1234', '$2y$10$XWOIe/NMV3/9JyXFLSXhvupq4FWTKyxzlG7yDJh.yeXVqHyh5dfZi', '1234', '1234@sunmoon.ac.kr', 0123456789, '공과대학', '컴퓨터공학부');
 
 -- --------------------------------------------------------
 
