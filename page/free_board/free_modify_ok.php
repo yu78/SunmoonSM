@@ -21,4 +21,3 @@ echo "<script>alert('수정되었습니다.');</script>";
     }else{
       echo "<script>alert('잘못된 접근입니다.'); location.href='../index.php'; </script>";
     }
-?>
