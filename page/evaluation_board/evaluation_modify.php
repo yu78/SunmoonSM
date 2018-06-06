@@ -75,21 +75,24 @@
                     <label>교수명</label>
                     <input type="text" name="professorName" class="form-control" maxlength="20" value="<?php echo $evaluation['professorName']; ?>" required>
                     <label>수강 연도</label>
-                    <select name="lectureYear" class="form-control">
-                      <option value="2011">2011</option>
-                      <option value="2012">2012</option>
-                      <option value="2013">2013</option>
-                      <option value="2014">2014</option>
-                      <option value="2015">2015</option>
-                      <option value="2016">2016</option>
-                      <option value="2017">2017</option>
-                      <option value="2018">2018</option>
-                      <option value="2019">2019</option>
-                      <option value="2020">2020</option>
-                      <option value="2021">2021</option>
-                      <option value="2022">2022</option>
-                      <option value="2023">2023</option>
-                    </select>
+							<?php
+// 보여질 년도의 범위 - 현재년부터 100년전까지 표시됩니다.
+$yearRange = 10;
+// 선택되어질 년도 - 현재년 기준 20년전의 년도가 선택되어집니다.
+$ageLimit = 10;
+
+
+$currentYear = date('Y');
+$startYear = ($currentYear - $yearRange);
+$selectYear = ($currentYear - $ageLimit);
+echo '<select name="lectureYear" class="form-control">';
+foreach (range($currentYear, $startYear) as $year) {
+    $selected = "";
+    if($year == $selectYear) { $selected = " selected"; }
+    echo '<option' . $selected . '>' . $year . '</option>';
+}
+echo '</select>';
+?>
                     <label>수강 학기</label>
                     <select name="semesterDivide" class="form-control">
                       <option name="1학기">1학기</option>
