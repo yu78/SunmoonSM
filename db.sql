@@ -10,6 +10,7 @@
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -61,16 +62,19 @@ CREATE TABLE `member` (
   `email` varchar(100) NOT NULL,
   `student_idx` int(10) NOT NULL,
   `college_name` varchar(45) NOT NULL,
-  `major_name` varchar(45) NOT NULL
+  `major_name` varchar(45) NOT NULL,
+  `m_level` tinyint(1) NOT NULL default '0',
+  `m_date` datetime NOT NULL default CURRENT_TIMESTAMP,
+  `m_updated_date` datetime NOT NULL default CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `member`
 --
 
-INSERT INTO `member` (`idx`, `id`, `pw`, `name`, `email`, `student_idx`, `college_name`, `major_name`) VALUES
-(1, 'admin', '$2y$10$DTx4VUTjqKQgMBPLotpUKex9VhXSdK0O70BeFMqighRfih2w52IjW', '관리자', 'admin@sunmoon.ac.kr', 1234567899,'관리자', '관리자'),
-(2, '1234', '$2y$10$XWOIe/NMV3/9JyXFLSXhvupq4FWTKyxzlG7yDJh.yeXVqHyh5dfZi', '1234', '1234@sunmoon.ac.kr', 0123456789, '공과대학', '컴퓨터공학부');
+INSERT INTO `member` (`idx`, `id`, `pw`, `name`, `email`, `student_idx`, `college_name`, `major_name`, `m_date`, `m_level`) VALUES
+(1, 'admin', '$2y$10$DTx4VUTjqKQgMBPLotpUKex9VhXSdK0O70BeFMqighRfih2w52IjW', '관리자', 'admin@sunmoon.ac.kr', 1234567899,'관리자', '관리자', '2018-05-04', 5),
+(2, '1234', '$2y$10$XWOIe/NMV3/9JyXFLSXhvupq4FWTKyxzlG7yDJh.yeXVqHyh5dfZi', '1234', '1234@sunmoon.ac.kr', 1234567898, '공과대학', '컴퓨터공학부', '2018-05-14', 0);
 
 -- --------------------------------------------------------
 
@@ -83,7 +87,7 @@ CREATE TABLE `free_reply` (
   `con_num` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `content` text NOT NULL,
-  `date` date NOT NULL
+  `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -91,9 +95,9 @@ CREATE TABLE `free_reply` (
 --
 
 INSERT INTO `free_reply` (`idx`, `con_num`, `name`, `content`, `date`) VALUES
-(1, 1, 'admin', '댓글!', '2018-05-02'),
-(2, 1, 'admin', '카운트!', '2018-05-02'),
-(3, 2, 'admin', '5월 2일', '2018-05-02');
+(1, 1, 'admin', '댓글!', '2018-05-02 01:04:23'),
+(2, 1, 'admin', '카운트!', '2018-05-02 01:04:26'),
+(3, 2, 'admin', '5월 2일', '2018-05-02 01:04:01');
 
 -- --------------------------------------------------------
 
@@ -132,7 +136,7 @@ CREATE TABLE `trade_reply` (
   `con_num` int(11) NOT NULL,
   `name` varchar(100) NOT NULL,
   `content` text NOT NULL,
-  `date` date NOT NULL
+  `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -140,9 +144,9 @@ CREATE TABLE `trade_reply` (
 --
 
 INSERT INTO `trade_reply` (`idx`, `con_num`, `name`, `content`, `date`) VALUES
-(1, 1, 'admin', '댓글!', '2018-05-02'),
-(2, 1, 'admin', '카운트!', '2018-05-02'),
-(3, 2, 'admin', '5월 2일', '2018-05-02');
+(1, 1, 'admin', '댓글!', '2018-05-02 01:04:23'),
+(2, 1, 'admin', '카운트!', '2018-05-02 01:04:26'),
+(3, 2, 'admin', '5월 2일', '2018-05-02 01:04:01');
 
 -- --------------------------------------------------------
 
@@ -171,7 +175,7 @@ CREATE TABLE `evaluation` (
 --
 
 INSERT INTO `evaluation` (`idx`, `name`, `lectureName`, `professorName`, `lectureYear`, `semesterDivide`, `lectureDivide`, `title`, `content`, `totalScore`, `creditScore`, `comfortableScore`, `lectureScore`) VALUES
-(1, 'admin', '종합프로젝트', '김봉재', 2018, '1학기', '전공', '최고예요', '갓봉짱짱맨', 'A+', 'A+', 'A+', 'A+');
+(1, 'admin', '종합프로젝트', '김봉재', 2018, '1학기', '전공', '최고에요', '갓봉짱짱맨', 'A', 'A', 'A', 'A');
 
 -- --------------------------------------------------------
 
