@@ -72,7 +72,7 @@ if(isset($_SESSION['userid'])){
 				<div id="bo_line"></div>
 			</div>
 			<div style="padding-top:10px;">
-			파일 : <a href="../../upload/<?php echo $board['file'];?>" download><?php echo $free_board['file']; ?></a>
+			파일 : <a href="../../upload/<?php echo $free_board['file'];?>" download><?php echo $free_board['file']; ?></a>
 			</div>
 			<div id="bo_content">
 				<?php echo nl2br("$free_board[content]"); ?>
