@@ -35,8 +35,8 @@ td{
 
   <div class="collapse navbar-collapse" id="navbarColor01">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
-        <a class="nav-link" href="../../page/evaluation.php">강의평가 <span class="sr-only">(current)</span></a>
+      <li class="nav-item">
+        <a class="nav-link" href="../../page/evaluation.php">강의평가</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../../page/trade.php">강의교환</a>
@@ -44,8 +44,13 @@ td{
       <li class="nav-item">
         <a class="nav-link" href="../../page/list.php">자유게시판</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="../../page/mypage.php">마이페이지</a>
+			<?php if($_SESSION['level']==5) { ?>
+			 <li class="nav-item">
+				 <a class="nav-link" href="../../page/admin/adminlist.php">회원목록</a>
+			 </li>
+		 <?php }?>
+      <li class="nav-item active">
+        <a class="nav-link" href="../../page/mypage.php">마이페이지 <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="../../member/logout.php">로그아웃</a>
@@ -56,32 +61,75 @@ td{
 <body>
 	<div id="board_area">
 		<br><br><h2>마이페이지</h2><br>
-		<div class="btn-group-vertical" style="float:left;">
-  		<a class="btn btn-success" href="user_information.php">유저정보</a>
-  		<a class="btn btn-success" href="my_evaluation.php">평가한 강의</a>
-			<a class="btn btn-success" href="my_trade.php">작성한 교환</a>
-  		<a class="btn btn-success" href="my_list.php">작성한 글</a>
-  		<a class="btn btn-success" href="my_reply.php">작성한 댓글</a>
-  		<a class="btn btn-success" href="my_bookmark.php">북마크</a>
-		</div>
+		<table>
+			<thead>
+				<tr>
+					<td><a style="color:rgb(180, 180, 180);padding-right:20px;" href="user_information.php">유저정보</td>
+					<td><a style="color:rgb(180, 180, 180);padding-right:20px;" href="my_evaluation.php">평가한 강의</td>
+					<td><a style="color:rgb(180, 180, 180);padding-right:20px;" href="my_trade.php">작성한 교환</td>
+					<td><a style="color:rgb(180, 180, 180);padding-right:20px;" href="my_list.php">작성한 글</td>
+					<td><a style="color:rgb(180, 180, 180);padding-right:20px;" href="my_reply.php">작성한 댓글</td>
+				</tr>
+			</thead>
+		</table>
+		<hr />
 	</div>
 
-	<table style="margin-left: auto; margin-right: auto;">
+	<table class="table table-hover">
 		<thead>
 				<tr>
 						<th width="50">번호</th>
-							<th width="400">댓글</th>
-							<th width="100">작성일</th>
+						<th width="200">댓글</th>
+						<th width="100"></th>
+						<th width="200">작성일</th>
 					</tr>
 			</thead>
+
+			<?php
+
+			//page번호 구하기
+			 if(isset($_GET['page'])){
+					$page = $_GET['page'];
+			 }else{
+					$page = 1;
+			 }
+					$bo_mq = mq("select * from trade_reply where name='".$_SESSION['userid']."'");
+					$row_num = mysqli_num_rows($bo_mq); //게시판 총 레코드 수
+
+					$list = 5; //한 페이지에 보여줄 개수
+					$block_ct = 5; //블록당 보여줄 페이지 개수
+
+					$block_num = ceil($page/$block_ct); // 현재 페이지 블록 구하기
+					$block_start = (($block_num - 1) * $block_ct) + 1; // 블록의 시작번호
+
+					$block_end = $block_start + $block_ct - 1; //블록 마지막 번호
+					$total_page = ceil($row_num / $list); // 페이징한 페이지 수 구하기
+
+					if($block_end > $total_page) $block_end = $total_page;
+					//만약 블록의 마지박 번호가 페이지수보다 많다면 마지박번호는 페이지 수
+
+					$total_block = ceil($total_page/$block_ct); //블럭 총 개수
+					$start_num = ($page-1) * $list; //시작번호 (page-1)에서 $list를 곱한다.
+
+					$sql = mq("select * from trade_reply where name='".$_SESSION['userid']."' order by idx desc limit $start_num, $list");
+					while($trade_reply = $sql->fetch_array()){
+							$content=$trade_reply["content"];
+							if(strlen($content)>30){
+									$content=str_replace($trade_reply["content"],mb_substr($trade_reply["content"],0,30,"utf-8")."...",$trade_reply["content"]);
+				}
+			?>
 
 			<tbody>
 				<tr>
 					<td width="50"><?php echo $trade_reply['con_num']; ?></td>
-					<td width="400"><?php echo $trade_reply['content']; ?></td>
-					<td width="100"><?php echo $trade_reply['date']?></td>
+					<td width="200"><?php echo $trade_reply['content']; ?></td>
+					<td width="100">
+						<a href='../trade_board/trade_read.php?idx=<?php echo $trade_reply["con_num"]; ?>'>원문보기</a>
+					</td>
+					<td width="200"><?php echo $trade_reply['date']?></td>
 				</tr>
 			</tbody>
+			<?php } ?>
 	</table>
 	<div id="page_num">
 			<ul>
@@ -131,13 +179,13 @@ td{
 	</div>
 
 	<!-- footer -->
-	<div class="container" style="padding-top:100px;">
-		<p class="text-center">Copyright ⓒ 프로듀스SM. All rights reserved.</p>
+	<div style="position:fixed; left:0px; bottom:0px; height:30px; width:100%; background:rgb(120, 194, 173);(120, 194, 173); color: white;">
+		<p style="text-align:center; top:10px;">Copyright ⓒ 프로듀스SM. All rights reserved.</p>
 	</div>
 </body>
 </html>
 <?php
     }else{
-        echo "<script>alert('잘못된 접근입니다.'); location.href='../../index.php'; </script>";
+        echo "<script>alert('로그인이 필요합니다.'); location.href='../../index.php'; </script>";
     }
  ?>
