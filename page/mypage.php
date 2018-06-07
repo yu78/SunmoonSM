@@ -46,35 +46,53 @@
       <li class="nav-item">
         <a class="nav-link" href="../page/list.php">자유게시판</a>
       </li>
-      <li class="nav-item active">
-        <a class="nav-link" href="../page/mypage.php">마이페이지 <span class="sr-only">(current)</span></a>
-      </li>
-			<li class="nav-item">
-        <a class="nav-link" href="../member/logout.php">로그아웃</a>
-      </li>
+			 <?php if($_SESSION['level']==5) { ?>
+				<li class="nav-item">
+					<a class="nav-link" href="../page/admin/adminlist.php">관리자</a>
+				</li>
+			<?php }?>
+			 <li class="nav-item active">
+				 <a class="nav-link" href="../page/mypage.php">마이페이지 <span class="sr-only">(current)</span></a>
+			 </li>
+			 <li class="nav-item">
+				 <a class="nav-link" href="../member/logout.php">로그아웃</a>
+			 </li>
     </ul>
 	</div>
 </nav>
 <body>
 	<div id="board_area">
 		<br><br><h2>마이페이지</h2><br>
-		<div class="btn-group-vertical" style="float:left;">
-  		<a class="btn btn-success" href="./mypage_board/user_information.php">유저정보</a>
-  		<a class="btn btn-success" href="./mypage_board/my_evaluation.php">평가한 강의</a>
-			<a class="btn btn-success" href="./mypage_board/my_trade.php">작성한 교환</a>
-  		<a class="btn btn-success" href="./mypage_board/my_list.php">작성한 글</a>
-  		<a class="btn btn-success" href="./mypage_board/my_reply.php">작성한 댓글</a>
-  		<a class="btn btn-success" href="./mypage_board/my_bookmark.php">북마크</a>
-		</div>
+		 <!-- class="btn-group-vertical" -->
+		 <table>
+			 <thead>
+				 <tr>
+					 <td><a style="color:rgb(180, 180, 180);padding-right:20px;" href="./mypage_board/user_information.php">유저정보</td>
+					 <td><a style="color:rgb(180, 180, 180);padding-right:20px;" href="./mypage_board/my_evaluation.php">평가한 강의</td>
+					 <td><a style="color:rgb(180, 180, 180);padding-right:20px;" href="./mypage_board/my_trade.php">작성한 교환</td>
+					 <td><a style="color:rgb(180, 180, 180);padding-right:20px;" href="./mypage_board/my_list.php">작성한 글</td>
+					 <td><a style="color:rgb(180, 180, 180);padding-right:20px;" href="./mypage_board/my_reply.php">작성한 댓글</td>
+				 </tr>
+			 </thead>
+		 </table>
+		 <hr />
+		<!-- <div>
+  		<a class="btn btn-info" href="./mypage_board/user_information.php">유저정보</a>
+  		<a class="btn btn-info" href="./mypage_board/my_evaluation.php">평가한 강의</a>
+			<a class="btn btn-info" href="./mypage_board/my_trade.php">작성한 교환</a>
+  		<a class="btn btn-info" href="./mypage_board/my_list.php">작성한 글</a>
+  		<a class="btn btn-info" href="./mypage_board/my_reply.php">작성한 댓글</a>
+  		<a class="btn btn-info" href="./mypage_board/my_bookmark.php">북마크</a>
+		</div> -->
 	</div>
 	<!-- footer -->
-	<div class="container" style="padding-top:100px;">
-		<p class="text-center">Copyright ⓒ 프로듀스SM. All rights reserved.</p>
+	<div style="position:fixed; left:0px; bottom:0px; height:30px; width:100%; background:rgb(120, 194, 173);(120, 194, 173); color: white;">
+		<p style="text-align:center; top:10px;">Copyright ⓒ 프로듀스SM. All rights reserved.</p>
 	</div>
 </body>
 </html>
 <?php
     }else{
-        echo "<script>alert('잘못된 접근입니다.'); location.href='../index.php'; </script>";
+        echo "<script>alert('로그인이 필요합니다.'); location.href='../index.php'; </script>";
     }
  ?>
