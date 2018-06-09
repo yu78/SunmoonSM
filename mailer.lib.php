@@ -22,10 +22,10 @@ function mailer($fname, $fmail, $to, $subject, $content, $type=0, $cc="", $bcc="
 	$mail->SMTPSecure = "ssl";
 	$mail->SMTPAuth = true;
 
-	$mail->Host = "smtp.naver.com";
+	$mail->Host = "smtp.gmail.com";
 	$mail->Port = 465;
-	$mail->Username = "parkyj927";
-	$mail->Password = "peng!8351";
+	$mail->Username = "#구글 아이디";
+	$mail->Password = "#구글 패스워드";
 
     $mail->CharSet = 'UTF-8';
     $mail->From = $fmail;
