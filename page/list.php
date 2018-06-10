@@ -207,7 +207,8 @@
                         if($page <= 1){ //만약 page가 1보다 크거나 같다면
                        //아무것도 표시하지 않는다.
                         }else{
-                            echo "<li><a href=?page=$page-1".$subString.">이전</a></li>"; //이전글자에 ?page=$page-1로서 현재 페이지에서 -1한다.
+				$pre = $page - 1; //변수를 만들어 놓고 해야 이전 버튼 클릭 가능
+                            echo "<li><a href=?page=$pre".$subString.">이전</a></li>"; //이전글자에 ?page=$page-1로서 현재 페이지에서 -1한다.
                         }
 
                     /* 페이징 번호 */
