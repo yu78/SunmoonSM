@@ -1,5 +1,5 @@
 # 프로듀스SM
-## 프로듀스SM v1.0 / URL [프로듀스SM](producesm.cafe24.com)
+## 프로듀스SM v1.0 / URL [프로듀스SM](producesm.cafe24.com)    접속이 안될 시 -> producesm.cafe24.com
 ### 
 본 사이트는 선문대학교 학생들을 위한 강의평가 사이트 입니다.
 
